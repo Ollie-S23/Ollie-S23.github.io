@@ -1,0 +1,91 @@
+/* ===== Click and tap targets: at least 44px, with space between neighbours (WCAG 2.5.5) ===== */
+
+/* header */
+#app header .navbar { --bs-navbar-padding-y: .25rem; }
+
+#app header .navbar-brand,
+#app header .nav-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+#app header .navbar-nav { gap: .25rem; }
+#app header .navbar-brand { gap: .6ch; } /* flex drops the space after the "> " prefix */
+#app header .navbar-collapse + div { margin-left: .5rem; } /* theme and accessibility buttons */
+
+/* narrow desktop: tighten the links so they stay on one line */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  #app header .navbar-nav { gap: 2px; }
+
+  #app header .navbar-nav .nav-link {
+    padding-left: .35rem;
+    padding-right: .35rem;
+    font-size: .8rem;
+    white-space: nowrap;
+  }
+}
+
+#app header .navbar-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  margin-top: .25rem;
+}
+
+#app header .theme-toggle,
+#app header .accessibility-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+#app header .theme-toggle + .dropdown { margin-left: .25rem; }
+#app header .navbar-toggler { min-height: 44px; }
+
+/* accessibility menu: the whole label is clickable */
+#app .dropdown-menu .dropdown-item {
+  min-height: 44px;
+  margin-bottom: .25rem;
+}
+
+#app .dropdown-menu .form-check-label {
+  display: block;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+/* side nav and the circles on the inline rail */
+#app .timeline a { min-height: 44px; }
+#app .timeline li + li:not(.traveller) { margin-top: 1.25rem; }
+
+#app .timeline-toggle,
+#app .animation-toggle {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+#app .section-rail .circle::after {
+  content: "";
+  position: absolute;
+  inset: -11px;
+  border-radius: 50%;
+}
+
+/* text links */
+#app .social-link,
+#app .card-link {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+#app .social-banner li { padding: .5rem 0; }
+
+#app footer a {
+  display: inline-block;
+  padding: .65rem .25rem;
+}

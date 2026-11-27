@@ -1,0 +1,171 @@
+/* ===== Frosted "liquid glass" theme. Remove its import in main.js to turn it off ===== */
+
+:root {
+  --header-h: 73px;
+  --glass-bg: rgba(255, 255, 255, .45);
+  --glass-edge: rgba(255, 255, 255, .75);
+  --glass-shadow: 0 8px 32px rgba(31, 55, 90, .14),
+    inset 0 1px 1px rgba(255, 255, 255, .9),
+    inset 0 -1px 1px rgba(255, 255, 255, .35);
+  --glass-blur: blur(18px) saturate(180%);
+  --glass-radius: 28px;
+  --space: 1.25rem; /* one spacing value for panels and cards */
+}
+
+/* colour behind the glass, otherwise there is nothing to blur */
+body {
+  background: radial-gradient(40rem 40rem at 10% 10%, #b9dcff 0%, transparent 60%),
+    radial-gradient(36rem 36rem at 90% 20%, #e3ccff 0%, transparent 60%),
+    radial-gradient(44rem 44rem at 60% 95%, #bff0e6 0%, transparent 60%),
+    #eef3fa;
+  background-attachment: fixed;
+}
+
+/* shared glass surface */
+header .navbar,
+.with-timeline > main,
+#app > main.container,
+#app > footer,
+.card,
+.list-group-item,
+.timeline ul::after {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+/* header */
+header .navbar {
+  margin: .5rem;
+  border-radius: 32px;
+}
+
+header .nav-link, header .navbar-brand, .navbar-toggler { border-radius: 999px; }
+
+header .navbar-nav .nav-link {
+  padding-left: .75rem;
+  padding-right: .75rem;
+  transition: background .2s;
+}
+
+header .nav-link:hover { background: rgba(255, 255, 255, .6); }
+
+header .nav-link.active {
+  background: rgba(255, 255, 255, .85);
+  box-shadow: 0 2px 8px rgba(31, 55, 90, .15), inset 0 1px 1px #fff;
+}
+
+/* page panels */
+.with-timeline > main,
+#app > main.container {
+  border-radius: var(--glass-radius);
+  margin-top: .75rem;
+  margin-bottom: .75rem;
+}
+
+.with-timeline > main { width: calc(100% - 1rem); }
+/* pages without a side nav: the panel is only as wide as its content */
+#app > main.container {
+  width: fit-content;
+  max-width: calc(100% - 1rem);
+  margin-inline: auto;
+  padding: var(--space);
+}
+
+#app > main.container > h1 { margin-bottom: var(--space); }
+main section + section::before { border-top-color: rgba(31, 55, 90, .2); }
+
+/* cards and lists */
+.card { border-radius: 22px; }
+.list-group { gap: var(--space); }
+
+.list-group-flush > .list-group-item,
+.list-group-flush > .list-group-item:last-child {
+  border: 1px solid var(--glass-edge);
+  border-radius: 22px;
+  padding: var(--space);
+}
+
+/* footer */
+#app > footer {
+  margin: auto .5rem .5rem;
+  padding: .5rem 1.5rem !important;
+  border-radius: 24px;
+}
+
+#app > footer p { margin: 0; }
+
+/* social card keeps its teal, as tinted glass */
+#app .social-banner {
+  background: rgba(41, 187, 188, .55);
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--glass-radius);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+#app .social-icon { border-radius: 16px; }
+#app .underconstruction-animation { border-radius: var(--glass-radius); }
+
+/* side nav: glass capsule with glossy circles */
+.timeline ul { z-index: 0; }
+
+.timeline ul::after {
+  content: "";
+  position: absolute;
+  inset: -.5rem -1rem;
+  z-index: -1;
+  border-radius: 36px;
+}
+
+.timeline ul::before { background: rgba(31, 55, 90, .45); }
+
+.timeline a::before {
+  border-color: var(--glass-edge);
+  background: radial-gradient(circle at 32% 28%, #fff 0 12%, #d6e9fb 45%, #a9cdf0 100%);
+}
+
+.timeline a.active::before { background: radial-gradient(circle at 32% 28%, #e4f2ff 0 10%, #4b97d8 45%, #1c6bb0 100%); }
+.with-timeline > .timeline { padding-right: 2rem; }
+/* expanded: capsule docks to the window edge, square on the right, round on the left */
+.with-timeline > .timeline:not(.collapsed) { padding-right: 0; }
+.timeline:not(.collapsed) ul { margin-right: 1rem; } /* the capsule overhangs the list by 1rem */
+
+.timeline ul::after {
+  border-radius: 36px 0 0 36px;
+  border-right: 0;
+}
+
+/* keep clear of the taller floating header */
+main section { scroll-margin-top: var(--header-h); }
+
+.timeline {
+  top: var(--header-h);
+  height: calc(100dvh - 129px);
+}
+
+@media (max-width: 991.98px) {
+  /* solid: a blurred layer cannot blur again inside the blurred header */
+  header .navbar-collapse {
+    margin: .25rem .5rem 0;
+    padding: .5rem;
+    border-radius: var(--glass-radius);
+    background: #f5f8fd;
+    box-shadow: var(--glass-shadow);
+    max-height: calc(100dvh - var(--header-h) - 1rem);
+  }
+
+  header .navbar-collapse.show { border: 1px solid var(--glass-edge); }
+}
+
+/* header corners: rounded on phones only, square on tablet and PC */
+@media (min-width: 576px) {
+  header .navbar, header .navbar-collapse { border-radius: 0; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root { --glass-bg: #fff; }
+}

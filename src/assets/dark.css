@@ -1,0 +1,104 @@
+/* ===== Charcoal dark theme with pixel and code fonts (loads after glass.css) ===== */
+
+:root, [data-bs-theme="dark"] {
+  --font-pixel: 'Pixelify Sans', monospace;
+  --font-code: 'JetBrains Mono', ui-monospace, monospace;
+  --accent: #5ee6a8;
+
+  --bs-body-font-family: var(--font-code);
+  --bs-body-font-size: .95rem;
+  --bs-body-bg: #1b1d21;
+  --bs-body-color: #e6e8eb;
+  --bs-heading-color: #fff;
+  --bs-secondary-color: #a8adb7;
+  --bs-link-color-rgb: 94, 230, 168;
+  --bs-link-hover-color-rgb: 150, 245, 200;
+  --bs-tertiary-bg: #24272c;
+
+  --glass-bg: rgba(255, 255, 255, .05);
+  --glass-edge: rgba(255, 255, 255, .13);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, .45),
+    inset 0 1px 1px rgba(255, 255, 255, .12);
+}
+
+body {
+  background: radial-gradient(40rem 40rem at 10% 10%, rgba(94, 230, 168, .12) 0%, transparent 60%),
+    radial-gradient(36rem 36rem at 90% 20%, rgba(130, 120, 255, .14) 0%, transparent 60%),
+    radial-gradient(44rem 44rem at 60% 95%, rgba(60, 170, 220, .10) 0%, transparent 60%),
+    #1b1d21;
+  background-attachment: fixed;
+}
+
+/* fonts */
+h1, h2, h3, .card-title, .navbar-brand, .construction-warning {
+  font-family: var(--font-pixel) !important;
+  letter-spacing: .02em;
+}
+
+header .navbar-brand { color: var(--accent); }
+header .navbar-brand::before { content: "> "; }
+header .nav-link { font-size: .85rem; }
+.card-subtitle, .text-body-secondary { font-size: .85rem; }
+
+/* header */
+header .nav-link:hover { background: rgba(255, 255, 255, .08); }
+
+header .nav-link.active {
+  color: var(--accent) !important;
+  background: rgba(94, 230, 168, .14);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .15);
+}
+
+/* dividers and side nav */
+main section + section::before { border-top-color: rgba(255, 255, 255, .15); }
+
+.timeline a {
+  color: var(--bs-body-color);
+  font-size: .85rem;
+}
+
+.timeline a.active { color: var(--accent); }
+
+.timeline ul::before {
+  background: rgba(255, 255, 255, .3);
+  box-shadow: 0 0 0 4px rgba(94, 230, 168, .10);
+}
+
+.timeline a::before {
+  background: radial-gradient(circle at 32% 28%, #8d949f 0 10%, #4a4f58 45%, #2c3036 100%);
+  box-shadow: 0 0 0 6px rgba(94, 230, 168, .10), inset 0 2px 4px rgba(255, 255, 255, .2);
+}
+
+.timeline a.active::before {
+  background: radial-gradient(circle at 32% 28%, #d9ffee 0 10%, #5ee6a8 45%, #1f9c68 100%);
+  box-shadow: 0 0 0 8px rgba(94, 230, 168, .22), 0 0 18px rgba(94, 230, 168, .5);
+}
+
+.timeline li.traveller {
+  background: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 10px 3px rgba(94, 230, 168, .7);
+}
+
+/* solid backing, so the button stays visible when a planet passes behind it */
+.timeline-toggle {
+  background: rgba(27, 29, 33, .85);
+  color: var(--bs-body-color);
+}
+
+/* social card: darker teal glass with light text */
+#app .social-banner {
+  background: rgba(41, 187, 188, .16);
+  color: var(--bs-body-color);
+}
+
+#app .social-link:hover { color: var(--accent); }
+#app .social-detail { font-size: .75rem; }
+
+@media (max-width: 991.98px) {
+  header .navbar-collapse { background: #24272c; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root, [data-bs-theme="dark"] { --glass-bg: #24272c; }
+}

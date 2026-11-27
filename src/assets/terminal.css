@@ -1,0 +1,144 @@
+/* ===== Text design: a plain terminal view. Same colours and fonts, no effects (loads last) ===== */
+.terminal-prompt { display: none; }
+
+:root[data-design="text"] {
+  scroll-behavior: auto;
+
+  body { background: var(--bs-body-bg); }
+
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  #app {
+    --line: 1px solid var(--bs-border-color);
+
+    /* flat surfaces: no glass, glow or rounding */
+    header .navbar,
+    header .navbar-collapse,
+    header .nav-link,
+    header .navbar-brand,
+    header .navbar-toggler,
+    main, section, footer, .card, .list-group-item, .social-banner {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    /* header and footer keep their structure, drawn with terminal lines */
+    header {
+      background: var(--bs-body-bg);
+      border-bottom: var(--line);
+    }
+
+    header .navbar { margin: 0; }
+
+    header .nav-link.active {
+      background: var(--accent);
+      color: var(--bs-body-bg) !important;
+    }
+
+    header .navbar-collapse.show {
+      background: var(--bs-body-bg);
+      border-bottom: var(--line);
+    }
+
+    footer {
+      margin: auto 0 0;
+      border-top: var(--line);
+    }
+
+    .terminal-prompt {
+      display: block;
+      width: 100%;
+      max-width: 60rem;
+      margin: 0 auto;
+      padding: 1rem 1rem 0;
+      color: var(--accent);
+    }
+
+    /* content: one column of plain text */
+    .with-timeline {
+      display: block;
+      padding: 0;
+    }
+
+    .timeline, .section-rail { display: none; }
+    .underconstruction-animation, .animation-toggle, img.social-icon { display: none; }
+
+    main.container,
+    .with-timeline > main {
+      width: 100%;
+      max-width: 60rem;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    main section { padding: 0 0 1rem; }
+
+    main section + section::before {
+      margin-bottom: 1rem;
+      border-top: 1px dashed var(--bs-border-color);
+    }
+
+    h1, main h2 {
+      font-size: 1.25rem;
+      text-align: left;
+    }
+
+    main h1::before {
+      content: "# ";
+      color: var(--accent);
+    }
+
+    main h2::before {
+      content: "## ";
+      color: var(--accent);
+    }
+
+    main h3, .card-title { font-size: 1rem; }
+
+    .card-title::before {
+      content: "> ";
+      color: var(--accent);
+    }
+
+    .text-center { text-align: left !important; }
+
+    .row {
+      display: block;
+      margin: 0;
+    }
+
+    .row > * {
+      width: 100%;
+      padding: 0;
+    }
+
+    .card, .card-body, .list-group-item { padding: 0; }
+
+    .card {
+      height: auto !important;
+      margin-bottom: 1rem;
+    }
+
+    .list-group { gap: 1rem; }
+
+    .social-banner {
+      width: auto;
+      margin: 0;
+      padding: 0;
+    }
+
+    .social-banner li { padding: .5rem 0; }
+
+    .social-link {
+      font-size: 1rem;
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+/* ===== Light mode: palette from the previous portfolio (loads after dark.css) ===== */
+
+:root[data-bs-theme="light"] {
+  --base-color: white;
+  --base-variant: #e8e9ed;
+  --text-color: #111528;
+  --secondary-text: #232738;
+  --primary-color: #3a435d;
+  --accent: #005acc; /* darker than the old #0071ff, for 4.5:1 contrast */
+
+  --bs-body-bg: var(--base-variant);
+  --bs-body-color: var(--text-color);
+  --bs-heading-color: var(--text-color);
+  --bs-secondary-color: var(--secondary-text);
+  --bs-link-color-rgb: 0, 90, 204;
+  --bs-link-hover-color-rgb: 0, 63, 143;
+  --bs-tertiary-bg: var(--base-variant);
+
+  /* whiter glass than dark mode, so text stays readable over the planets */
+  --glass-bg: rgba(255, 255, 255, .62);
+  --glass-edge: rgba(255, 255, 255, .85);
+  --glass-shadow: 0 8px 32px rgba(58, 67, 93, .18), inset 0 1px 1px #fff;
+}
+
+:root[data-bs-theme="light"] {
+  body { background: linear-gradient(200deg, #fff 0%, #e8e9ed 45%, #c9d4ee 100%) fixed; }
+
+  header .nav-link:hover { background: rgba(0, 113, 255, .08); }
+
+  header .nav-link.active {
+    color: #005acc !important;
+    background: rgba(0, 113, 255, .12);
+  }
+
+  main section + section::before { border-top-color: rgba(58, 67, 93, .2); }
+  .timeline a.active { color: #005acc; }
+  .timeline-toggle { background: rgba(255, 255, 255, .85); }
+
+  .timeline ul::before,
+  .section-rail .line {
+    background: rgba(58, 67, 93, .35);
+    box-shadow: 0 0 0 4px rgba(0, 113, 255, .12);
+  }
+
+  .timeline a::before,
+  .section-rail .circle {
+    border-color: rgba(58, 67, 93, .25);
+    background: radial-gradient(circle at 32% 28%, #fff 0 12%, #d9dded 45%, #b4bcd4 100%);
+    box-shadow: 0 0 0 6px rgba(0, 113, 255, .1), inset 0 2px 4px rgba(255, 255, 255, .7);
+  }
+
+  .timeline a.active::before,
+  .section-rail .circle.active {
+    background: radial-gradient(circle at 32% 28%, #e4f0ff 0 10%, #3d90ff 45%, #0058c7 100%);
+    box-shadow: 0 0 0 7px rgba(0, 113, 255, .22), 0 0 18px rgba(0, 113, 255, .45);
+  }
+
+  .timeline li.traveller,
+  .section-rail .dot {
+    border-color: #0071ff;
+    box-shadow: 0 0 10px 3px rgba(0, 113, 255, .5);
+  }
+
+  #app .social-banner { background: rgba(41, 187, 188, .35); }
+  .construction-warning { color: #c4141f; }
+
+  @media (max-width: 991.98px) {
+    header .navbar-collapse { background: #fff; }
+  }
+
+  @media (prefers-reduced-transparency: reduce) { --glass-bg: #fff; }
+}

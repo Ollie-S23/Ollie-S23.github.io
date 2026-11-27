@@ -1,0 +1,13 @@
+/* ===== Simple text (accessibility): clear font everywhere, no decorative characters (loads last) ===== */
+
+:root[data-simple-text="true"] {
+  --font-pixel: system-ui, 'Segoe UI', Arial, sans-serif;
+  --font-code: system-ui, 'Segoe UI', Arial, sans-serif;
+  --bs-body-font-size: 1.05rem;
+
+  h1, h2, h3, .card-title, .navbar-brand, .construction-warning { letter-spacing: normal; }
+
+  /* the "> ", "# " and "## " prefixes, and the terminal prompt line */
+  .navbar-brand::before, .card-title::before, h1::before, h2::before { content: none !important; }
+  .terminal-prompt { display: none !important; }
+}
